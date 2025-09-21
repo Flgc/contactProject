@@ -19,7 +19,7 @@ import com.example.contactproject.model.Contact;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +33,18 @@ public class MainActivity extends AppCompatActivity{
         });
 
         // Create the variable for the Views (xml)
-        EditText etName  =  findViewById(R.id.editTextName);
+        //EditText etName  =  findViewById(R.id.editTextName);
 
+        // This button will be handled on this screen
         Button btInsert  =  findViewById(R.id.buttonInsert);
-        Button btConsult =  findViewById(R.id.buttonConsult);
+        btInsert.setOnClickListener(this);
 
-        // Implement with one button just "extends AppCompatActivity" in public class
+        // This button will be handled on this screen
+        Button btConsult =  findViewById(R.id.buttonConsult);
+        btConsult.setOnClickListener(this);
+
+        /*
+        --> Implement with one button just "extends AppCompatActivity" in public class
         btInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,13 +55,33 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(screenListClient);
                 finish();
             }
-        });
-
+        }); */
     }
+
+    // Implement with two button necessary implements View.OnClickListener in public class
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.buttonInsert){
+            EditText etName  =  findViewById(R.id.editTextName);
+            String name = etName.getText().toString();
+            insertContacts(name);
+            returnConsult();
+        } else if (view.getId() == R.id.buttonConsult){
+            returnConsult();
+        }
+    }
+
     private void insertContacts(String name){
         ContactDAO contactDAO = new ContactDAO(this);
 
         Contact c1 = new Contact(1,name);
         contactDAO.contactInsert(c1);
+    }
+
+    private void returnConsult(){
+        Intent screenListClient = new Intent(MainActivity.this,
+                ListClientActivity.class);
+        startActivity(screenListClient);
+        finish();
     }
 }

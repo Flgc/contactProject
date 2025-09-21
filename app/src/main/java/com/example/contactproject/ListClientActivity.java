@@ -1,6 +1,8 @@
 package com.example.contactproject;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,7 +17,7 @@ import com.example.contactproject.model.Contact;
 
 import java.util.List;
 
-public class ListClientActivity extends AppCompatActivity {
+public class ListClientActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,10 @@ public class ListClientActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Create the variable for the Views (xml)
+        Button btBack  =  findViewById(R.id.btBack);
+        btBack.setOnClickListener(this);
 
         loadContacts();
     }
@@ -53,4 +59,10 @@ public class ListClientActivity extends AppCompatActivity {
         lvContacts.setAdapter(contactAdapter);
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.btBack) {
+            finish();
+        }
+    }
 }
