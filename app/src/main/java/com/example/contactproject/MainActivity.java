@@ -34,23 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadContacts(){
         ContactDAO contactDAO = new ContactDAO(this);
-        //List<Contact> contacts = contactDAO.listContacts();
-        List<Contact> contacts = fakeContacts();
+
+        Contact c1 = new Contact(1,"Contact 01");
+        Contact c2 = new Contact(1,"Contact 02");
+        Contact c3 = new Contact(1,"Contact 03");
+
+        contactDAO.contactInsert(c1);
+        contactDAO.contactInsert(c2);
+        contactDAO.contactInsert(c3);
+
+        List<Contact> contacts = contactDAO.listContacts();
+
         ContactAdapter contactAdapter = new ContactAdapter(contacts, this);
 
         ListView lvContacts = findViewById(R.id.lvContacts);
         lvContacts.setAdapter(contactAdapter);
     }
 
-    private List<Contact> fakeContacts(){
-        Contact c1 = new Contact(1,"Contact 01");
-        Contact c2 = new Contact(1,"Contact 02");
-        Contact c3 = new Contact(1,"Contact 03");
-
-        List<Contact> contacts = new ArrayList<>();
-        contacts.add(c1);
-        contacts.add(c2);
-        contacts.add(c3);
-        return contacts;
-    }
 }
