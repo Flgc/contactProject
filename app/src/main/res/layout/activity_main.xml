@@ -26,7 +26,7 @@
             app:srcCompat="@drawable/clients" />
 
         <TextView
-            android:id="@+id/textViewEnterZipCode"
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -53,15 +53,13 @@
             android:layout_marginBottom="16dp"
             android:text="@string/insert" />
 
-        <TextView
-            android:id="@+id/textViewInformation"
+        <Button
+            android:id="@+id/buttonConsult"
             android:layout_width="match_parent"
-            android:layout_height="126dp"
-            android:background="@drawable/input"
-            android:ems="10"
-            android:text="@string/information"
-            android:textAlignment="center"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/consult" />
 
     </LinearLayout>
 

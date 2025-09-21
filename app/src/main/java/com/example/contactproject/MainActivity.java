@@ -1,6 +1,10 @@
 package com.example.contactproject;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -13,10 +17,9 @@ import com.example.contactproject.adapter.ContactAdapter;
 import com.example.contactproject.dao.ContactDAO;
 import com.example.contactproject.model.Contact;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,5 +31,31 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Create the variable for the Views (xml)
+        EditText etName  =  findViewById(R.id.editTextName);
+
+        Button btInsert  =  findViewById(R.id.buttonInsert);
+        Button btConsult =  findViewById(R.id.buttonConsult);
+
+        // Implement with one button just "extends AppCompatActivity" in public class
+        btInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etName.getText().toString();
+                insertContacts(name);
+                Intent screenListClient = new Intent(MainActivity.this,
+                        ListClientActivity.class);
+                startActivity(screenListClient);
+                finish();
+            }
+        });
+
+    }
+    private void insertContacts(String name){
+        ContactDAO contactDAO = new ContactDAO(this);
+
+        Contact c1 = new Contact(1,name);
+        contactDAO.contactInsert(c1);
     }
 }
