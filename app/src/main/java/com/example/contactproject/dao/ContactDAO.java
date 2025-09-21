@@ -48,7 +48,7 @@ public class ContactDAO {
             } while (cursor.moveToNext());
         }
         cursor.close();
-        
+
        return contacts;
     }
 }
