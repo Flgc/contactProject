@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ContactProject</string>
     <string name="my_contacts">My Contacts</string>
+    <string name="new_name">Enter a New Name in the Registry</string>
+    <string name="insert">Insert</string>
+    <string name="information">Information</string>
+    <string name="name">Name</string>
 </resources>
